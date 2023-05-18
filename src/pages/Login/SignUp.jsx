@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../providers/AuthProvider";
 import SocialLogin from "./SocialLogin";
+import { Link } from "react-router-dom";
 
 const SignUp = () => {
   const [error, setError] = useState("");
@@ -58,7 +59,7 @@ const SignUp = () => {
                   aria-invalid={errors.name ? "true" : "false"}
                 />
                 {errors.name?.type === "required" && (
-                  <p role="alert">Name field is required</p>
+                  <p className="text-red-600" role="alert">Name field is required</p>
                 )}
                 <label
                   htmlFor="name"
@@ -79,7 +80,7 @@ const SignUp = () => {
                   })}
                   aria-invalid={errors.email ? "true" : "false"}
                 />
-                {errors.email && <p role="alert">{errors.email?.message}</p>}
+                {errors.email && <p className="text-red-600" role="alert">{errors.email?.message}</p>}
                 <label
                   htmlFor="email"
                   className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-8 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-8"
@@ -100,7 +101,7 @@ const SignUp = () => {
                   aria-invalid={errors.password ? "true" : "false"}
                 />
                 {errors.password && (
-                  <p role="alert">{errors.password?.message}</p>
+                  <p className="text-red-600" role="alert">{errors.password?.message}</p>
                 )}
                 <label
                   htmlFor="password"
@@ -121,7 +122,7 @@ const SignUp = () => {
                   aria-invalid={errors.confirm_password ? "true" : "false"}
                 />
                 {errors.confirm_password && (
-                  <p role="alert">{errors.confirm_password?.message}</p>
+                  <p className="text-red-600" role="alert">{errors.confirm_password?.message}</p>
                 )}
                 <label
                   htmlFor="floating_repeat_password"
@@ -141,7 +142,7 @@ const SignUp = () => {
                   aria-invalid={errors.photo ? "true" : "false"}
                 />
                 {errors.photo?.type === "required" && (
-                  <p role="alert">Photo URL is required</p>
+                  <p className="text-red-600" role="alert">Photo URL is required</p>
                 )}
                 <label
                   htmlFor="photo"
@@ -159,10 +160,13 @@ const SignUp = () => {
               </div>
             </div>
           </form>
+          <div className="text-center my-3">
+            <p>Already Have an Account? <Link className="font-bold text-[#ff2556]" to='/login'>Login</Link></p>
+          </div>
           {error && (
             <p className="my-3 text-center text-red-600 font-bold">{error}</p>
           )}
-          <SocialLogin />
+          <SocialLogin setError={setError}/>
         </div>
       </div>
     </div>
