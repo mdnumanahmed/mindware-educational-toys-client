@@ -80,7 +80,7 @@ const MindWareNavbar = () => {
           <Navbar.Toggle />
         </div>
         <Navbar.Collapse>
-          <NavLink href="/" active={true}>
+          <NavLink to="/" active='true'>
             Home
           </NavLink>
           <NavLink to="/all-toys">All Toys</NavLink>
