@@ -1,4 +1,5 @@
 import FeaturedToys from "./FeaturedToys/FeaturedToys";
+import ShopByCategory from "./ShopByCategory/ShopByCategory";
 import Slider from "./Slider/Slider";
 
 const Home = () => {
@@ -6,6 +7,7 @@ const Home = () => {
         <div>
             <Slider />
             <FeaturedToys />
+            <ShopByCategory />
         </div>
     );
 };
