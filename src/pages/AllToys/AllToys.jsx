@@ -1,8 +1,21 @@
 import { useLoaderData } from "react-router-dom";
 import ToyRow from "./toyRow";
+import { useState } from "react";
 
 const AllToys = () => {
-    const allToys = useLoaderData()
+  const allToys = useLoaderData();
+  const [toys, setToys] = useState(allToys);
+  const [searchText, setSearchText] = useState("");
+
+  const handleSearch = (e) => {
+    console.log('Clicked',searchText, e);
+    fetch(`http://localhost:5000/toys/${searchText}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setToys(data);
+      });
+  };
+
   return (
     <div>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg container mx-auto">
@@ -27,7 +40,7 @@ const AllToys = () => {
                   clipRule="evenodd"
                 ></path>
               </svg>
-              Last 30 days
+              Sort
               <svg
                 className="w-3 h-3 ml-2"
                 aria-hidden="true"
@@ -45,7 +58,10 @@ const AllToys = () => {
               </svg>
             </button>
           </div>
-          <label htmlFor="table-search" className="sr-only">
+          <label
+            htmlFor="table-search"
+            className="sr-only"
+          >
             Search
           </label>
           <div className="relative">
@@ -67,6 +83,8 @@ const AllToys = () => {
             <input
               type="text"
               id="table-search"
+              onChange={(e) => setSearchText(e.target.value)}
+              onKeyDown={handleSearch}
               className="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Search for items"
             />
@@ -108,12 +126,9 @@ const AllToys = () => {
             </tr>
           </thead>
           <tbody>
-            {
-                allToys.map(toy => <ToyRow  
-                    key={toy._id}
-                    toy={toy}
-                    />)
-            }
+            {toys.map((toy) => (
+              <ToyRow key={toy._id} toy={toy} />
+            ))}
           </tbody>
         </table>
       </div>

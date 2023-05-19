@@ -14,7 +14,7 @@ const AddToy = () => {
     handleSubmit,
   } = useForm();
   const onSubmit = (data) => {
-    data.sub_category = selectedOption.value;
+    data.sub_category = selectedOption.label;
     setError("");
     if (!data) {
       Swal.fire({
