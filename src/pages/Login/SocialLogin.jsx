@@ -17,7 +17,8 @@ const SocialLogin = (props) => {
   const handleGithubSignIn = () => {
     githubSignIn()
       .then((result) => {
-        console.log(result.user);
+        const loggedUser = result.user
+        console.log(loggedUser);
       })
       .catch((error) => console.log(error));
   };

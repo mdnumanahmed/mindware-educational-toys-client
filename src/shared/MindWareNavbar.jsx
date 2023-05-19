@@ -3,7 +3,7 @@ import logo from "../assets/logo.svg";
 import { Avatar, Dropdown, Navbar } from "flowbite-react";
 import { useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 
 const MindWareNavbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -70,24 +70,26 @@ const MindWareNavbar = () => {
               </button>
             </>
           ) : (
-            <button
-              type="button"
-              className="text-white bg-gradient-to-r from-pink-400 via-pink-500 to-pink-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-pink-300 dark:focus:ring-pink-800 shadow-lg shadow-pink-500/50 dark:shadow-lg dark:shadow-pink-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
-            >
-              Login
-            </button>
+            <Link to='/login'>
+              <button
+                type="button"
+                className="text-white bg-gradient-to-r from-pink-400 via-pink-500 to-pink-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-pink-300 dark:focus:ring-pink-800 shadow-lg shadow-pink-500/50 dark:shadow-lg dark:shadow-pink-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+              >
+                Login
+              </button>
+            </Link>
           )}
           <Navbar.Toggle />
         </div>
         <Navbar.Collapse>
-          <NavLink to="/" active='true'>
+          <NavLink to="/" active="true">
             Home
           </NavLink>
           <NavLink to="/all-toys">All Toys</NavLink>
           {user && (
             <>
               <NavLink to="/my-toys">My Toys</NavLink>
-              <NavLink to="/add-toy">Add Toys</NavLink>
+              <NavLink to="/add-toy">Add A Toy</NavLink>
             </>
           )}
           <NavLink to="/about">About Us</NavLink>

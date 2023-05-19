@@ -6,8 +6,9 @@ import SocialLogin from "./SocialLogin";
 import { Link } from "react-router-dom";
 
 const SignUp = () => {
+  const [accept, setAccept] = useState(false);
   const [error, setError] = useState("");
-  const { createUser } = useContext(AuthContext);
+  const { createUser, updateUserData } = useContext(AuthContext);
   const {
     register,
     formState: { errors },
@@ -29,6 +30,11 @@ const SignUp = () => {
       .then((result) => {
         const createdUser = result.user;
         console.log(createdUser);
+        updateUserData(data.name, data.photo)
+        .then(()=>{
+          console.log('data updated');
+        })
+        .catch(error => console.log(error.message))
         Swal.fire({
           icon: "success",
           title: "Welcome",
@@ -59,7 +65,9 @@ const SignUp = () => {
                   aria-invalid={errors.name ? "true" : "false"}
                 />
                 {errors.name?.type === "required" && (
-                  <p className="text-red-600" role="alert">Name field is required</p>
+                  <p className="text-red-600" role="alert">
+                    Name field is required
+                  </p>
                 )}
                 <label
                   htmlFor="name"
@@ -80,7 +88,11 @@ const SignUp = () => {
                   })}
                   aria-invalid={errors.email ? "true" : "false"}
                 />
-                {errors.email && <p className="text-red-600" role="alert">{errors.email?.message}</p>}
+                {errors.email && (
+                  <p className="text-red-600" role="alert">
+                    {errors.email?.message}
+                  </p>
+                )}
                 <label
                   htmlFor="email"
                   className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-8 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-8"
@@ -101,7 +113,9 @@ const SignUp = () => {
                   aria-invalid={errors.password ? "true" : "false"}
                 />
                 {errors.password && (
-                  <p className="text-red-600" role="alert">{errors.password?.message}</p>
+                  <p className="text-red-600" role="alert">
+                    {errors.password?.message}
+                  </p>
                 )}
                 <label
                   htmlFor="password"
@@ -122,7 +136,9 @@ const SignUp = () => {
                   aria-invalid={errors.confirm_password ? "true" : "false"}
                 />
                 {errors.confirm_password && (
-                  <p className="text-red-600" role="alert">{errors.confirm_password?.message}</p>
+                  <p className="text-red-600" role="alert">
+                    {errors.confirm_password?.message}
+                  </p>
                 )}
                 <label
                   htmlFor="floating_repeat_password"
@@ -142,7 +158,9 @@ const SignUp = () => {
                   aria-invalid={errors.photo ? "true" : "false"}
                 />
                 {errors.photo?.type === "required" && (
-                  <p className="text-red-600" role="alert">Photo URL is required</p>
+                  <p className="text-red-600" role="alert">
+                    Photo URL is required
+                  </p>
                 )}
                 <label
                   htmlFor="photo"
@@ -152,22 +170,53 @@ const SignUp = () => {
                 </label>
               </div>
 
+              <div className="flex items-start mb-6">
+                <div className="flex items-center h-5">
+                  <input
+                    id="terms"
+                    type="checkbox"
+                    onChange={()=>setAccept(!accept)}
+                    value=""
+                    className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
+                    required
+                  />
+                </div>
+                <label
+                  htmlFor="terms"
+                  className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                >
+                  I agree with the{" "}
+                  <a
+                    href="#"
+                    className="text-blue-600 hover:underline dark:text-blue-500"
+                  >
+                    terms and conditions
+                  </a>
+                </label>
+              </div>
+
               <div className="text-center">
                 <input
                   type="submit"
-                  value='Sign Up'
-                  className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  disabled={!accept}
+                  value="Sign Up"
+                  className={` text-white  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center ${accept ? 'bg-blue-700 hover:bg-blue-800 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800': 'bg-gray-300 hover:bg-gray-300 dark:bg-gray-300 dark:hover:bg-gray-300 dark:focus:ring-gray-300'}`}
                 />
               </div>
             </div>
           </form>
           <div className="text-center my-3">
-            <p>Already Have an Account? <Link className="font-bold text-[#ff2556]" to='/login'>Login</Link></p>
+            <p>
+              Already Have an Account?{" "}
+              <Link className="font-bold text-[#ff2556]" to="/login">
+                Login
+              </Link>
+            </p>
           </div>
           {error && (
             <p className="my-3 text-center text-red-600 font-bold">{error}</p>
           )}
-          <SocialLogin setError={setError}/>
+          <SocialLogin setError={setError} />
         </div>
       </div>
     </div>
