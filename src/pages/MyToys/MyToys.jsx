@@ -1,43 +1,46 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import MyToyRow from "./MyToyRow";
-import UpdateToy from "./UpdateToy";
 import Swal from "sweetalert2";
 
 const MyToys = () => {
   const { user } = useContext(AuthContext);
   const [myToys, setMyToys] = useState([]);
-  const [showModal, setShowModal] = useState(false);
+
 
   useEffect(() => {
     fetch(`http://localhost:5000/my-toys/${user.email}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(user.email);
         setMyToys(data);
       });
   }, [user.email]);
 
-  const handleUpdate = (toy) => {    
-    console.log(toy);
-    fetch(`http://localhost:5000/toy-update/${toy._id}`, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(toy),
-    })
-      .then((res) => res.json())
-      .then((result) => {
-        if (result.modifiedCount > 0) {
-          Swal.fire({
-            icon: "success",
-            title: "Welcome",
-            text: "Your toy added successfully!",
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/toys/${id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            if (data.deletedCount > 0) {
+              Swal.fire("Deleted!", "Your file has been deleted.", "success");
+              const remaining = myToys.filter((toy) => toy._id !== id);
+              setMyToys(remaining);
+            }
           });
-        }
-        console.log(result);
-      });
+      }
+    });
   };
 
   return (
@@ -89,18 +92,16 @@ const MyToys = () => {
           </thead>
           <tbody>
             {myToys.map((toy) => (
-              <>
-                <MyToyRow key={toy._id} toy={toy} setShowModal={setShowModal} />
-                <UpdateToy
-                  showModal={showModal}
-                  setShowModal={setShowModal}
-                  toy={toy}
-                  handleUpdate={handleUpdate}
-                />
-              </>
+              <MyToyRow key={toy._id} toy={toy} handleDelete={handleDelete} />
             ))}
           </tbody>
         </table>
+        {/* <UpdateToy
+          showModal={showModal}
+          setShowModal={setShowModal}
+          toy={modalData}
+          handleUpdate={handleUpdate}
+        /> */}
       </div>
     </div>
   );
