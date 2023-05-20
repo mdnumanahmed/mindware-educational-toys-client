@@ -7,11 +7,14 @@ import AddToy from "../pages/AddToy/AddToy";
 import PrivateRoute from "./PrivateRoute";
 import AllToys from "../pages/AllToys/AllToys";
 import MyToys from "../pages/MyToys/MyToys";
+import UpdateToyRoute from "../pages/MyToys/UpdateToyRoute";
+import NotFound from "../pages/NotFound/NotFound";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
+    errorElement: <NotFound />,
     children: [
       {
         path: "/",
@@ -43,6 +46,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <MyToys />
+          </PrivateRoute>
+        )
+      },
+      {
+        path: "toy-update/:id",
+        element: (
+          <PrivateRoute>
+            <UpdateToyRoute />
           </PrivateRoute>
         )
       }

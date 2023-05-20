@@ -11,16 +11,16 @@ const UpdateToy = (props) => {
     handleSubmit,
   } = useForm();
 
-  const { showModal, setShowModal, handleUpdate, toy } = props;
+  const { modalShow, setModalShow, handleUpdate, toy } = props;
 
   return (
     <div>
       <Modal
         {...toy}
-        show={showModal}
+        show={modalShow}
         size="md"
         popup={true}
-        onClose={() => setShowModal(false)}
+        onClose={() => setModalShow(false)}
       >
         <Modal.Header />
         <Modal.Body>
@@ -36,8 +36,8 @@ const UpdateToy = (props) => {
                       type="text"
                       id="toy_id"
                       placeholder=" "
-                      value={toy?._id}
-                      className="sr-only"
+                      value={toy?._id || ''}
+                      className="text-white outline-none border-0"
                       {...register("toy_id")}
                     />
                     
@@ -46,7 +46,7 @@ const UpdateToy = (props) => {
                       id="photo"
                       className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                       placeholder=" "
-                      value={toy?.photo}
+                      defaultValue={toy?.photo || ''}
                       {...register("photo", { required: true })}
                       aria-invalid={errors.photo ? "true" : "false"}
                     />
@@ -69,7 +69,7 @@ const UpdateToy = (props) => {
                       id="toy_name"
                       className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                       placeholder=" "
-                      value={toy?.toy_name}
+                      defaultValue={toy?.toy_name || ''}
                       {...register("toy_name", { required: true })}
                       aria-invalid={errors.toy_name ? "true" : "false"}
                     />
@@ -90,7 +90,7 @@ const UpdateToy = (props) => {
                     <input
                       type="text"
                       id="seller_name"
-                      value={user?.displayName}
+                      defaultValue={user?.displayName || ''}
                       className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                       placeholder=" "
                       {...register("seller_name", { required: true })}
@@ -112,7 +112,7 @@ const UpdateToy = (props) => {
                   <div className="relative z-0 w-full mb-6 group">
                     <input
                       type="email"
-                      value={user?.email}
+                      defaultValue={user?.email || ''}
                       id="seller_email"
                       className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                       placeholder=" "
@@ -139,7 +139,7 @@ const UpdateToy = (props) => {
                       <select
                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         {...register("sub_category")}
-                        value={toy?.sub_category}
+                        defaultValue={toy?.sub_category || ''}
                       >
                         <option value="ؒmath">ؒMath Toys</option>
                         <option value="language">Language Toys</option>
@@ -161,7 +161,7 @@ const UpdateToy = (props) => {
                         id="price"
                         className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                         placeholder=" "
-                        defaultValue={toy?.price}
+                        defaultValue={toy?.price || ''}
                         {...register("price", {
                           required: "Price field is required",
                         })}
@@ -188,7 +188,7 @@ const UpdateToy = (props) => {
                         id="toy_rating"
                         className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                         placeholder=" "
-                        value={toy?.toy_rating}
+                        defaultValue={toy?.toy_rating || ''}
                         {...register("toy_rating", {
                           required: "Toy Rating field is required",
                         })}
@@ -213,7 +213,7 @@ const UpdateToy = (props) => {
                         id="available_quantity"
                         className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                         placeholder=" "
-                        defaultValue={toy?.available_quantity}
+                        defaultValue={toy?.available_quantity || ''}
                         {...register("available_quantity", {
                           required: "Available quantity field is required",
                         })}
@@ -248,7 +248,7 @@ const UpdateToy = (props) => {
                       rows="4"
                       className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       placeholder="Leave a comment..."
-                      defaultValue={toy?.description}
+                      defaultValue={toy?.description || ''}
                     ></textarea>
                   </div>
 

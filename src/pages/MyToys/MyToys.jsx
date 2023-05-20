@@ -2,10 +2,13 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import MyToyRow from "./MyToyRow";
 import Swal from "sweetalert2";
+import UpdateToy from "./UpdateToyModal";
 
 const MyToys = () => {
   const { user } = useContext(AuthContext);
   const [myToys, setMyToys] = useState([]);
+  const [modalData, setModalData] = useState({})
+  const [modalShow, setModalShow] = useState(false)
 
 
   useEffect(() => {
@@ -15,6 +18,34 @@ const MyToys = () => {
         setMyToys(data);
       });
   }, [user.email]);
+
+  const handleUpdateData = (data) => {
+    setModalShow(true)
+    setModalData(data)
+    console.log(data._id);
+  }
+
+  const handleUpdate = (data) => {
+    console.log(data.toy_id);
+    fetch(`http://localhost:5000/toy-update/${data.toy_id}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.modifiedCount) {
+          Swal.fire({
+            icon: "success",
+            title: "Welcome",
+            text: "Your toy updated successfully!",
+          });
+        }
+        console.log(data);
+      });
+  };
 
   const handleDelete = (id) => {
     Swal.fire({
@@ -92,16 +123,17 @@ const MyToys = () => {
           </thead>
           <tbody>
             {myToys.map((toy) => (
-              <MyToyRow key={toy._id} toy={toy} handleDelete={handleDelete} />
+              <MyToyRow key={toy._id} toy={toy} handleUpdateData={handleUpdateData} handleDelete={handleDelete} />
             ))}
           </tbody>
         </table>
-        {/* <UpdateToy
-          showModal={showModal}
-          setShowModal={setShowModal}
+        <UpdateToy
+          modalShow={modalShow}
+          setModalShow={setModalShow}
           toy={modalData}
+          setModalData={setModalData}
           handleUpdate={handleUpdate}
-        /> */}
+        />
       </div>
     </div>
   );

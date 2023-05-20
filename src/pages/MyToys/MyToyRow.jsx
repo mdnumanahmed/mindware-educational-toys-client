@@ -1,8 +1,8 @@
 
-import { Button } from "flowbite-react";
 import { HiPencilSquare, HiTrash } from "react-icons/hi2";
+import { Link } from "react-router-dom";
 
-const MyToyRow = ({ toy, setShowModal }) => {
+const MyToyRow = ({ toy, handleDelete, handleUpdateData }) => {
   const {
     _id,
     photo,
@@ -15,6 +15,7 @@ const MyToyRow = ({ toy, setShowModal }) => {
     description,
     sub_category,
   } = toy;
+
   return (
     <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
       <td className="w-4 p-4">
@@ -49,13 +50,13 @@ const MyToyRow = ({ toy, setShowModal }) => {
       <td className="px-6 py-4">{description}</td>
       <td className="px-6 py-4">
         <div className="flex">
-          <button to={`/toy/${_id}`}>
+          <Link to={`/toy-update/${_id}`}>
+            <HiPencilSquare className="mr-4 text-xl text-blue-600 dark:text-blue-500 hover:underline" />
+          </Link>
+          <button onClick={() => handleUpdateData(toy)}>
             <HiPencilSquare className="mr-4 text-xl text-blue-600 dark:text-blue-500 hover:underline" />
           </button>
-          <Button onClick={()=> setShowModal(true)}>
-    Toggle modal
-  </Button>
-          <button to={`/toy/${_id}`}>
+          <button onClick={() => handleDelete(_id)}>
             <HiTrash className="text-xl text-blue-600 dark:text-blue-500 hover:underline" />
           </button>
         </div>
