@@ -18,7 +18,26 @@ const MyToys = () => {
       });
   }, [user.email]);
 
-  
+  const handleUpdate = (toy) => {    
+    console.log(toy);
+    fetch(`http://localhost:5000/toy-update/${toy._id}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(toy),
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        if (result.modifiedCount > 0) {
+          Swal.fire({
+            icon: "success",
+            title: "Welcome",
+            text: "Your toy added successfully!",
+          });
+        }
+        console.log(result);
+      });
   };
 
   return (
@@ -72,7 +91,12 @@ const MyToys = () => {
             {myToys.map((toy) => (
               <>
                 <MyToyRow key={toy._id} toy={toy} setShowModal={setShowModal} />
-                
+                <UpdateToy
+                  showModal={showModal}
+                  setShowModal={setShowModal}
+                  toy={toy}
+                  handleUpdate={handleUpdate}
+                />
               </>
             ))}
           </tbody>
