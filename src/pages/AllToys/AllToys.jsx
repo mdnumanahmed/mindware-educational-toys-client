@@ -7,8 +7,7 @@ const AllToys = () => {
   const [toys, setToys] = useState(allToys);
   const [searchText, setSearchText] = useState("");
 
-  const handleSearch = (e) => {
-    console.log('Clicked',searchText, e);
+  const handleSearch = () => {
     fetch(`http://localhost:5000/toys/${searchText}`)
       .then((res) => res.json())
       .then((data) => {
