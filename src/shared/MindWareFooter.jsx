@@ -44,9 +44,9 @@ const MindWareFooter = () => {
             </div>
           </div>
           <div className=" bg-gray-700 ">
-            <div className="container mx-auto py-6 px-4 sm:flex sm:items-center sm:justify-between">
+            <div className="container mx-auto py-6 px-4 text-center sm:flex sm:items-center sm:justify-between">
               <Footer.Copyright href="#" by="Mindware" year={2023} />
-              <div className="mt-4 flex space-x-6 sm:mt-0 sm:justify-center">
+              <div className="mt-4 flex space-x-6 sm:mt-0 justify-center sm:justify-center">
                 <Footer.Icon href="#" icon={BsFacebook} />
                 <Footer.Icon href="#" icon={BsInstagram} />
                 <Footer.Icon href="#" icon={BsTwitter} />

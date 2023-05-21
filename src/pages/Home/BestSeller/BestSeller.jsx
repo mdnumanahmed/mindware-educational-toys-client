@@ -16,7 +16,7 @@ const BestSeller = () => {
     <div className="py-20 container mx-auto">
       <div className="section-header text-center">
         <p className="font-bold mb-3">Explore Popular Toys</p>
-        <h2 className="text-5xl font-bold text-[#ff007a] mb-7">
+        <h2 className="text-3xl md:text-5xl font-bold text-[#ff007a] mb-7">
           Our Best Seller Toys
         </h2>
       </div>

@@ -24,7 +24,7 @@ const ShopByCategory = () => {
       <div className="py-20 container mx-auto">
         <div className="section-header text-center">
           <p className="font-bold mb-3">Choose your favorite toys</p>
-          <h2 className="text-5xl font-bold text-[#ff007a] mb-7">
+          <h2 className="text-3xl md:text-5xl font-bold text-[#ff007a] mb-7">
             Shop By Category
           </h2>
         </div>
@@ -40,9 +40,9 @@ const ShopByCategory = () => {
                     activeTab === "all"
                       ? "bg-blue-700 text-white"
                       : "bg-white text-gray-900"
-                  } focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-full text-base font-medium px-5 py-2.5 text-center mr-3 mb-3 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:bg-gray-900 dark:focus:ring-blue-800`}
+                  } focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-full text-base font-medium px-2 py-2 text-center mr-0 mb-3 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:bg-gray-900 dark:focus:ring-blue-800`}
                 >
-                  All Toys
+                  All
                 </button>
               </Tab>
               <Tab>
@@ -53,9 +53,9 @@ const ShopByCategory = () => {
                     activeTab === "Math Toys"
                       ? "bg-blue-700 text-white"
                       : "bg-white text-gray-900"
-                  } focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-full text-base font-medium px-5 py-2.5 text-center mr-3 mb-3 dark:text-white dark:focus:ring-gray-800`}
+                  } focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-full text-base font-medium px-2 py-2 text-center mr-0 mb-3 dark:text-white dark:focus:ring-gray-800`}
                 >
-                  Math Toys
+                  Math
                 </button>
               </Tab>
               <Tab>
@@ -66,9 +66,9 @@ const ShopByCategory = () => {
                     activeTab === "Language Toys"
                       ? "bg-blue-700 text-white"
                       : "bg-white text-gray-900"
-                  } focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-full text-base font-medium px-5 py-2.5 text-center mr-3 mb-3 dark:text-white dark:focus:ring-gray-800`}
+                  } focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-full text-base font-medium px-2 py-2 text-center mr-0 mb-3 dark:text-white dark:focus:ring-gray-800`}
                 >
-                  Language Toys
+                  Language
                 </button>
               </Tab>
               <Tab>
@@ -79,9 +79,9 @@ const ShopByCategory = () => {
                     activeTab === "Science Toys"
                       ? "bg-blue-700 text-white"
                       : "bg-white text-gray-900"
-                  } focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-full text-base font-medium px-5 py-2.5 text-center mr-3 mb-3 dark:text-white dark:focus:ring-gray-800`}
+                  } focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-full text-base font-medium px-2 py-2 text-center mr-0 mb-3 dark:text-white dark:focus:ring-gray-800`}
                 >
-                  Science Toys
+                  Science
                 </button>
               </Tab>
             </TabList>

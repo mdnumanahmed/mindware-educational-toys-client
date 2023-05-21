@@ -10,7 +10,7 @@ import MyToys from "../pages/MyToys/MyToys";
 import UpdateToyRoute from "../pages/MyToys/UpdateToyRoute";
 import NotFound from "../pages/NotFound/NotFound";
 import ToyDetails from "../pages/ToyDetails/ToyDetails";
-// https://mindware-server.vercel.app
+// http://localhost:5000
 const router = createBrowserRouter([
   {
     path: "/",

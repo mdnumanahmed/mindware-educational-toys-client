@@ -6,7 +6,7 @@ import slide4 from '../../../assets/slider/slide4.webp'
 
 const Slider = () => {
   return (
-    <div className="h-56 sm:h-64 xl:h-80 2xl:h-96">
+    <div className="h-28 sm:h-64 xl:h-80 2xl:h-96">
       <Carousel>
         <div className="flex h-full items-center justify-center bg-gray-400 dark:bg-gray-700 dark:text-white">
           <img src={slide1} alt="" />

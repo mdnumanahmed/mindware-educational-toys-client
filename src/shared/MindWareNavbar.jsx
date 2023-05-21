@@ -23,13 +23,13 @@ const MindWareNavbar = () => {
           <img src={logo} className="mr-3 h-10 sm:h-12" alt="Mind Ware Logo" />
         </NavLink>
         <div className="flex items-center md:order-2 md:ml-auto">
-          <button className="relative">
+          <button className="relative hidden md:flex">
             <AiOutlineHeart className="flex mr-3 text-2xl" />
             <span className="absolute -top-2 right-2 text-white leading-4 text-xs bg-[#ff007a] rounded-full w-4 h-4">
               0
             </span>
           </button>
-          <button className="relative">
+          <button className="relative hidden md:flex">
             <AiOutlineShoppingCart className="flex mr-3 text-2xl" />
             <span className="absolute -top-2 right-2 text-white leading-4 text-xs bg-[#ff007a] rounded-full w-4 h-4">
               0
