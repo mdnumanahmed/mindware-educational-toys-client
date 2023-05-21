@@ -17,7 +17,7 @@ const FeaturedToys = () => {
         <h2 className="text-5xl font-bold text-[#ff007a] mb-7">Our Featured Toys</h2>
       </div>
       <div className="grid gap-4">
-        <div>
+        <div data-aos="slide-up" data-aos-easing="ease-in" data-aos-duration="600" data-aos-delay="50">
           <img className="h-auto w-full rounded-lg" src={imgSrc} alt="" />
         </div>
         <div className="grid grid-cols-5 gap-4" onClick={handleImgSrc}>

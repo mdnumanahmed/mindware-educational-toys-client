@@ -12,7 +12,7 @@ const PrivateRoute = ({children}) => {
         return <Spinner />
     }
 
-    if(user?.email){
+    if(user){
         return children
     }
 

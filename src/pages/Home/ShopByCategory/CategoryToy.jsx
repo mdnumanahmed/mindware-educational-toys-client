@@ -25,7 +25,7 @@ const CategoryToy = ({ toy }) => {
   };
   return (
     <div className="relative overflow-hidden group">
-      <img
+      <img data-aos="slide-up" data-aos-easing="ease-in" data-aos-duration="600" 
         className="h-auto max-w-full rounded-lg"
         src={photo}
         alt={toy_name}

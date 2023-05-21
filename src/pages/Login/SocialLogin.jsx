@@ -1,15 +1,25 @@
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
+import { useLocation, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const SocialLogin = (props) => {
     const {setError} = props
   const { googleSignIn, githubSignIn } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
 
   const handleGoogleSignIn = () => {
     googleSignIn()
       .then((result) => {
         const loggedUser = result.user
-        console.log(loggedUser);
+        Swal.fire({
+          icon: "success",
+          title: "Welcome",
+          text: "User logged in successfully!",
+        });
+        navigate(from, { replace: true });
       })
       .catch((error) => setError(error));
   };
@@ -18,7 +28,12 @@ const SocialLogin = (props) => {
     githubSignIn()
       .then((result) => {
         const loggedUser = result.user
-        console.log(loggedUser);
+        Swal.fire({
+          icon: "success",
+          title: "Welcome",
+          text: "User logged in successfully!",
+        });
+        navigate(from, { replace: true });
       })
       .catch((error) => console.log(error));
   };
