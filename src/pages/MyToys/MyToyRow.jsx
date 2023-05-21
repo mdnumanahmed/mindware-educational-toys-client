@@ -47,7 +47,7 @@ const MyToyRow = ({ toy, handleDelete, handleUpdateData }) => {
       <td className="px-6 py-4">${price}</td>
       <td className="px-6 py-4">{available_quantity}</td>
       <td className="px-6 py-4">{toy_rating}</td>
-      <td className="px-6 py-4">{description}</td>
+      <td className="px-6 py-4">{description?.length > 30 ? description.slice(0,30) : description}</td>
       <td className="px-6 py-4">
         <div className="flex">
           <Link to={`/toy-update/${_id}`} title="Update By Route">

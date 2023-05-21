@@ -17,7 +17,7 @@ const MindWareNavbar = () => {
       .catch((error) => console.log(error.message));
   };
   return (
-    <div className="">
+    <div className="border bottom-2 shadow-md">
       <Navbar className="items-center bg-slate-200">
         <NavLink href="/">
           <img src={logo} className="mr-3 h-10 sm:h-12" alt="Mind Ware Logo" />
@@ -43,7 +43,7 @@ const MindWareNavbar = () => {
                 label={
                   <Avatar
                     alt="User settings"
-                    img="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+                    img={user?.photoURL}
                     rounded={true}
                   />
                 }

@@ -1,9 +1,11 @@
 import { Footer } from "flowbite-react";
 import { BsFacebook, BsInstagram, BsTwitter, BsGithub } from "react-icons/bs";
+import { NavLink } from "react-router-dom";
+import logo from "../assets/logo.svg";
 
 const MindWareFooter = () => {
   return (
-    <div>
+    <div className="border border-t-2">
       <Footer bgDark={true}>
         <div className="w-full">
           <div className="grid container mx-auto grid-cols-2 gap-8 py-8 px-6 md:grid-cols-4">
@@ -44,7 +46,16 @@ const MindWareFooter = () => {
             </div>
           </div>
           <div className=" bg-gray-700 ">
-            <div className="container mx-auto py-6 px-4 text-center sm:flex sm:items-center sm:justify-between">
+            <div className="container mx-auto py-4 px-4 text-center md:flex md:items-center md:justify-between">
+              <div className="flex justify-center">
+              <NavLink to="/" >
+                <img
+                  src={logo}
+                  className="mr-3 h-6 sm:h-12 "
+                  alt="Mind Ware Logo"
+                />
+              </NavLink>
+              </div>
               <Footer.Copyright href="#" by="Mindware" year={2023} />
               <div className="mt-4 flex space-x-6 sm:mt-0 justify-center sm:justify-center">
                 <Footer.Icon href="#" icon={BsFacebook} />

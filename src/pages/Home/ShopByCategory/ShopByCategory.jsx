@@ -40,7 +40,7 @@ const ShopByCategory = () => {
                     activeTab === "all"
                       ? "bg-blue-700 text-white"
                       : "bg-white text-gray-900"
-                  } focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-full text-base font-medium px-2 py-2 text-center mr-0 mb-3 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:bg-gray-900 dark:focus:ring-blue-800`}
+                  } focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-full text-base font-medium px-2 md:px-5 py-2 md:py-3 md:mr-2 text-center  mb-3 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:bg-gray-900 dark:focus:ring-blue-800`}
                 >
                   All
                 </button>
@@ -53,7 +53,7 @@ const ShopByCategory = () => {
                     activeTab === "Math Toys"
                       ? "bg-blue-700 text-white"
                       : "bg-white text-gray-900"
-                  } focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-full text-base font-medium px-2 py-2 text-center mr-0 mb-3 dark:text-white dark:focus:ring-gray-800`}
+                  } focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-full text-base font-medium px-2 md:px-5 py-2 md:py-3 mr-0 md:mr-2 text-center mb-3 dark:text-white dark:focus:ring-gray-800`}
                 >
                   Math
                 </button>
@@ -66,7 +66,7 @@ const ShopByCategory = () => {
                     activeTab === "Language Toys"
                       ? "bg-blue-700 text-white"
                       : "bg-white text-gray-900"
-                  } focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-full text-base font-medium px-2 py-2 text-center mr-0 mb-3 dark:text-white dark:focus:ring-gray-800`}
+                  } focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-full text-base font-medium px-2 md:px-5 py-2 md:py-3 mr-0 md:mr-2 text-center mb-3 dark:text-white dark:focus:ring-gray-800`}
                 >
                   Language
                 </button>
@@ -79,7 +79,7 @@ const ShopByCategory = () => {
                     activeTab === "Science Toys"
                       ? "bg-blue-700 text-white"
                       : "bg-white text-gray-900"
-                  } focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-full text-base font-medium px-2 py-2 text-center mr-0 mb-3 dark:text-white dark:focus:ring-gray-800`}
+                  } focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-full text-base font-medium px-2 md:px-5 py-2 md:py-3 mr-0 md:mr-2 text-center mb-3 dark:text-white dark:focus:ring-gray-800`}
                 >
                   Science
                 </button>

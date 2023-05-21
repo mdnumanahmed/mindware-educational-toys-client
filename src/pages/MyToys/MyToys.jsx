@@ -9,26 +9,25 @@ import Spinner from "../../shared/Spinner";
 const MyToys = () => {
   const { user, loading } = useContext(AuthContext);
   const [myToys, setMyToys] = useState([]);
-  const [modalData, setModalData] = useState({})
-  const [modalShow, setModalShow] = useState(false)
-
+  const [sortOrder, setSortOrder] = useState("asc");
+  const [modalData, setModalData] = useState({});
+  const [modalShow, setModalShow] = useState(false);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/my-toys/${user.email}`)
+    fetch(`http://localhost:5000/my-toys/${user.email}?sort=${sortOrder}`)
       .then((res) => res.json())
       .then((data) => {
+        console.log(data);
         setMyToys(data);
       });
-  }, [user.email]);
+  }, [user.email, sortOrder]);
 
   const handleUpdateData = (data) => {
-    setModalShow(true)
-    setModalData(data)
-    console.log(data._id);
-  }
+    setModalShow(true);
+    setModalData(data);
+  };
 
   const handleUpdate = (data) => {
-    console.log(data.toy_id);
     fetch(`http://localhost:5000/toys/${data.toy_id}`, {
       method: "PUT",
       headers: {
@@ -75,6 +74,11 @@ const MyToys = () => {
       }
     });
   };
+
+  const handleSortChange = (event) => {
+    setSortOrder(event.target.value);
+  };
+
   useTitle("My Toys");
   if (loading) {
     return <Spinner />;
@@ -82,6 +86,15 @@ const MyToys = () => {
 
   return (
     <div>
+      <div className="text-center my-10">
+        <label>
+          Sort By Price:
+          <select value={sortOrder} onChange={handleSortChange}>
+            <option value="asc">Ascending</option>
+            <option value="desc">Descending</option>
+          </select>
+        </label>
+      </div>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg container mx-auto">
         <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -129,7 +142,12 @@ const MyToys = () => {
           </thead>
           <tbody>
             {myToys.map((toy) => (
-              <MyToyRow key={toy._id} toy={toy} handleUpdateData={handleUpdateData} handleDelete={handleDelete} />
+              <MyToyRow
+                key={toy._id}
+                toy={toy}
+                handleUpdateData={handleUpdateData}
+                handleDelete={handleDelete}
+              />
             ))}
           </tbody>
         </table>

@@ -18,8 +18,12 @@ const AddToy = () => {
   } = useForm();
   const onSubmit = (data) => {
     data.sub_category = selectedOption.label;
+    const price = parseFloat(data.price)
+    const toy = {
+      ...data, price
+    }
     setError("");
-    if (!data) {
+    if (!toy) {
       Swal.fire({
         icon: "error",
         title: "Oops...",
@@ -28,17 +32,15 @@ const AddToy = () => {
       });
       return;
     }
-    console.log(data);
     fetch("http://localhost:5000/toys", {
       method: "POST",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(toy),
     })
       .then((res) => res.json())
       .then((toyData) => {
-        console.log(toyData);
         if (toyData.insertedId) {
           Swal.fire({
             icon: "success",
@@ -61,9 +63,9 @@ const AddToy = () => {
 
   return (
     <div>
-      <div className="w-[50%] mx-auto p-20 bg-slate-50 rounded-lg shadow-lg">
+      <div className="w-[90%] lg:w-[50%] mx-auto p-20 my-5 bg-slate-100 rounded-lg shadow-xl">
         <div className="form-title text-center mb-5">
-          <h2 className="text-3xl font-bold text-[#ff2556]">
+          <h2 className="text-xl md:text-3xl font-bold text-[#ff2556]">
             Add Your Best Toy
           </h2>
         </div>

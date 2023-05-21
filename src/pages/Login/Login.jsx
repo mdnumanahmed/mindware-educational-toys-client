@@ -43,7 +43,7 @@ const Login = () => {
 
   return (
     <div>
-      <div className="w-[50%] mx-auto p-20 bg-slate-50 rounded-lg shadow-lg">
+      <div className="w-[90%] lg:w-[50%] mx-auto p-20 my-5 bg-slate-100 rounded-lg shadow-xl">
         <div className="form-title text-center mb-5">
           <h2 className="text-3xl font-bold text-[#ff2556]">Please Login</h2>
         </div>
