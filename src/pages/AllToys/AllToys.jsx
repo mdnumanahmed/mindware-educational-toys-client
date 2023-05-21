@@ -12,7 +12,7 @@ const AllToys = () => {
   const [searchText, setSearchText] = useState("");
 
   const handleSearch = () => {
-    fetch(`http://localhost:5000/toys/${searchText}`)
+    fetch(`https://mindware-server.vercel.app/toys/${searchText}`)
       .then((res) => res.json())
       .then((data) => {
         setToys(data);

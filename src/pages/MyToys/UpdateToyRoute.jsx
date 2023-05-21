@@ -18,7 +18,7 @@ const UpdateToyRoute = () => {
   const toy = useLoaderData();
 
   const handleUpdate = (data) => {
-    fetch(`http://localhost:5000/toys/${id}`, {
+    fetch(`https://mindware-server.vercel.app/toys/${id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

@@ -5,7 +5,7 @@ const BestSeller = () => {
   const [bestToy, setBestToy] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/toys`)
+    fetch(`https://mindware-server.vercel.app/toys`)
       .then((res) => res.json())
       .then((data) => {
         setBestToy(data);

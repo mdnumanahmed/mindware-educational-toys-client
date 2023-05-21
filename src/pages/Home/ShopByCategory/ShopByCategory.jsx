@@ -8,7 +8,7 @@ const ShopByCategory = () => {
   const [activeTab, setActiveTab] = useState();
 
   useEffect(() => {
-    fetch(`http://localhost:5000/categorizedToy/${activeTab}`)
+    fetch(`https://mindware-server.vercel.app/categorizedToy/${activeTab}`)
       .then((res) => res.json())
       .then((data) => {
         setCategoryToys(data);
