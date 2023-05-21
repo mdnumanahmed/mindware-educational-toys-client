@@ -12,7 +12,7 @@ const MyToys = () => {
 
 
   useEffect(() => {
-    fetch(`http://localhost:5000/my-toys/${user.email}`)
+    fetch(`https://mindware-server.vercel.app/my-toys/${user.email}`)
       .then((res) => res.json())
       .then((data) => {
         setMyToys(data);
@@ -27,7 +27,7 @@ const MyToys = () => {
 
   const handleUpdate = (data) => {
     console.log(data.toy_id);
-    fetch(`http://localhost:5000/toys/${data.toy_id}`, {
+    fetch(`https://mindware-server.vercel.app/toys/${data.toy_id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
@@ -58,7 +58,7 @@ const MyToys = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/toys/${id}`, {
+        fetch(`https://mindware-server.vercel.app/toys/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())

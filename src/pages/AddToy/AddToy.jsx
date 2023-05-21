@@ -26,7 +26,7 @@ const AddToy = () => {
       return;
     }
     console.log(data);
-    fetch("http://localhost:5000/toys", {
+    fetch("https://mindware-server.vercel.app/toys", {
       method: "POST",
       headers: {
         "content-type": "application/json",

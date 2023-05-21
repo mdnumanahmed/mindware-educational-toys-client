@@ -60,7 +60,7 @@ const AuthProvider = ({ children }) => {
       //   const currentUser = {
       //     email: loggedUser.email,
       //   };
-      //   fetch("http://localhost:5000/jwt", {
+      //   fetch("https://mindware-server.vercel.app/jwt", {
       //     method: "POST",
       //     headers: {
       //       "content-type": "application/json",
