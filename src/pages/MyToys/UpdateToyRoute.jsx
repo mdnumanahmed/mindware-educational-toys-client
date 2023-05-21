@@ -19,7 +19,7 @@ const UpdateToyRoute = () => {
   const [toy, setToy] = useState({})
 
   useEffect(()=>{
-    fetch(`http://localhost:5000/update-toy/${id}`)
+    fetch(`http://localhost:5000/toy/${id}`)
     .then(res => res.json())
     .then(data => {
       setToy(data)
@@ -27,7 +27,7 @@ const UpdateToyRoute = () => {
   },[id])
 
   const handleUpdate = (data) => {
-    fetch(`http://localhost:5000/toy-update/${data._id}`, {
+    fetch(`http://localhost:5000/toys/${data._id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

@@ -125,8 +125,8 @@ const AllToys = () => {
             </tr>
           </thead>
           <tbody>
-            {toys.map((toy) => (
-              <ToyRow key={toy._id} toy={toy} />
+            {toys.map((toy, index) => (
+              <ToyRow key={toy._id} index={index} toy={toy} />
             ))}
           </tbody>
         </table>

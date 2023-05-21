@@ -27,7 +27,7 @@ const MyToys = () => {
 
   const handleUpdate = (data) => {
     console.log(data.toy_id);
-    fetch(`http://localhost:5000/toy-update/${data.toy_id}`, {
+    fetch(`http://localhost:5000/toys/${data.toy_id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
