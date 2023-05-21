@@ -10,7 +10,7 @@ import MyToys from "../pages/MyToys/MyToys";
 import UpdateToyRoute from "../pages/MyToys/UpdateToyRoute";
 import NotFound from "../pages/NotFound/NotFound";
 import ToyDetails from "../pages/ToyDetails/ToyDetails";
-
+// https://mindware-server.vercel.app
 const router = createBrowserRouter([
   {
     path: "/",
@@ -32,7 +32,7 @@ const router = createBrowserRouter([
       {
         path: "all-toys",
         element: <AllToys />,
-        loader: () => fetch("https://mindware-server.vercel.app/toys"),
+        loader: () => fetch("http://localhost:5000/toys"),
       },
       {
         path: "add-toy",
@@ -56,12 +56,13 @@ const router = createBrowserRouter([
           <PrivateRoute>
             <UpdateToyRoute />
           </PrivateRoute>
-        )
+        ),
+        loader:({params}) => fetch(`http://localhost:5000/toy/${params.id}`)
       },
       {
         path:'/toy/:id',
         element:<PrivateRoute><ToyDetails/></PrivateRoute>,
-        loader:({params}) => fetch(`https://mindware-server.vercel.app/toy/${params.id}`)
+        loader:({params}) => fetch(`http://localhost:5000/toy/${params.id}`)
       },
 
     ],

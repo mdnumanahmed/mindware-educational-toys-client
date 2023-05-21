@@ -3,16 +3,18 @@ import { AuthContext } from "../../providers/AuthProvider";
 import MyToyRow from "./MyToyRow";
 import Swal from "sweetalert2";
 import UpdateToy from "./UpdateToyModal";
+import useTitle from "../../hooks/useTitle";
+import Spinner from "../../shared/Spinner";
 
 const MyToys = () => {
-  const { user } = useContext(AuthContext);
+  const { user, loading } = useContext(AuthContext);
   const [myToys, setMyToys] = useState([]);
   const [modalData, setModalData] = useState({})
   const [modalShow, setModalShow] = useState(false)
 
 
   useEffect(() => {
-    fetch(`https://mindware-server.vercel.app/my-toys/${user.email}`)
+    fetch(`http://localhost:5000/my-toys/${user.email}`)
       .then((res) => res.json())
       .then((data) => {
         setMyToys(data);
@@ -27,7 +29,7 @@ const MyToys = () => {
 
   const handleUpdate = (data) => {
     console.log(data.toy_id);
-    fetch(`https://mindware-server.vercel.app/toys/${data.toy_id}`, {
+    fetch(`http://localhost:5000/toys/${data.toy_id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
@@ -58,7 +60,7 @@ const MyToys = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`https://mindware-server.vercel.app/toys/${id}`, {
+        fetch(`http://localhost:5000/toys/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -73,6 +75,10 @@ const MyToys = () => {
       }
     });
   };
+  useTitle("My Toys");
+  if (loading) {
+    return <Spinner />;
+  }
 
   return (
     <div>

@@ -1,46 +1,33 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import { useForm } from "react-hook-form";
-import { useParams } from "react-router-dom";
+import { useLoaderData, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
+import useTitle from "../../hooks/useTitle";
+import Spinner from "../../shared/Spinner";
 
 const UpdateToyRoute = () => {
-
-  const {id} = useParams()
-  const { user } = useContext(AuthContext);
-  const [control, setControl] = useState(false);
+  const { id } = useParams();
+  const { user, loading } = useContext(AuthContext);
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
 
-  
-  const [toy, setToy] = useState({})
-
-  useEffect(()=>{
-    fetch(`https://mindware-server.vercel.app/toy/${id}`)
-    .then(res => res.json())
-    .then(data => {
-      setToy(data)
-    })
-  },[id])
+  const toy = useLoaderData();
 
   const handleUpdate = (data) => {
-    fetch(`https://mindware-server.vercel.app/toys/${data._id}`, {
+    fetch(`http://localhost:5000/toys/${id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
       },
       body: JSON.stringify(data),
     })
-      .then((res) => {
-        console.log(res);
-        res.json()
-      })
+      .then((res) => res.json())
       .then((result) => {
         if (result.modifiedCount > 0) {
-          setControl(!control);
           Swal.fire({
             icon: "success",
             title: "Welcome",
@@ -50,6 +37,11 @@ const UpdateToyRoute = () => {
         console.log(result);
       });
   };
+
+  useTitle("Home");
+  if (loading) {
+    return <Spinner />;
+  }
 
   return (
     <div>

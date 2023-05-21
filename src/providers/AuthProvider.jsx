@@ -54,27 +54,7 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (loggedUser) => {
       setUser(loggedUser);
-      setLoading(false);
-
-      // if (loggedUser && loggedUser.email) {
-      //   const currentUser = {
-      //     email: loggedUser.email,
-      //   };
-      //   fetch("https://mindware-server.vercel.app/jwt", {
-      //     method: "POST",
-      //     headers: {
-      //       "content-type": "application/json",
-      //     },
-      //     body: JSON.stringify(currentUser),
-      //   })
-      //     .then((res) => res.json())
-      //     .then((data) => {
-      //       localStorage.setItem("car-access-token", data.token);
-      //     });
-      // } else {
-      //   localStorage.removeItem("car-access-token");
-      // }
-      
+      setLoading(false);      
     });
     return () => unsubscribe();
   }, []);

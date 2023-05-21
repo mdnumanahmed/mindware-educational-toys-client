@@ -1,19 +1,27 @@
 import { useLoaderData } from "react-router-dom";
 import ToyRow from "./toyRow";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import useTitle from "../../hooks/useTitle";
+import { AuthContext } from "../../providers/AuthProvider";
+import Spinner from "../../shared/Spinner";
 
 const AllToys = () => {
+  const { loading } = useContext(AuthContext);
   const allToys = useLoaderData();
   const [toys, setToys] = useState(allToys);
   const [searchText, setSearchText] = useState("");
 
   const handleSearch = () => {
-    fetch(`https://mindware-server.vercel.app/toys/${searchText}`)
+    fetch(`http://localhost:5000/toys/${searchText}`)
       .then((res) => res.json())
       .then((data) => {
         setToys(data);
       });
   };
+  useTitle("All Toys");
+  if (loading) {
+    return <Spinner />;
+  }
 
   return (
     <div>
@@ -57,10 +65,7 @@ const AllToys = () => {
               </svg>
             </button>
           </div>
-          <label
-            htmlFor="table-search"
-            className="sr-only"
-          >
+          <label htmlFor="table-search" className="sr-only">
             Search
           </label>
           <div className="relative">

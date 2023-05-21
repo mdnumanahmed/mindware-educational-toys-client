@@ -3,10 +3,13 @@ import { AuthContext } from "../../providers/AuthProvider";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import Select from "react-select";
+import useTitle from "../../hooks/useTitle";
+import Spinner from "../../shared/Spinner";
 
 const AddToy = () => {
+  const { user, loading } = useContext(AuthContext);
+
   const [error, setError] = useState("");
-  const { user } = useContext(AuthContext);
   const [selectedOption, setSelectedOption] = useState(null);
   const {
     register,
@@ -26,7 +29,7 @@ const AddToy = () => {
       return;
     }
     console.log(data);
-    fetch("https://mindware-server.vercel.app/toys", {
+    fetch("http://localhost:5000/toys", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -51,6 +54,10 @@ const AddToy = () => {
     { value: "language", label: "Language Toys" },
     { value: "science", label: "Science Toys" },
   ];
+  useTitle("Add A Toy");
+  if (loading) {
+    return <Spinner />;
+  }
 
   return (
     <div>
@@ -254,7 +261,8 @@ const AddToy = () => {
                 >
                   Your message
                 </label>
-                <textarea {...register("description")}
+                <textarea
+                  {...register("description")}
                   id="description"
                   rows="4"
                   className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"

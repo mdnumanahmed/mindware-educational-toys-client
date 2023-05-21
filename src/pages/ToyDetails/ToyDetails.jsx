@@ -20,6 +20,7 @@ const ToyDetails = () => {
     sub_category,
   } = toy;
 
+  useTitle('Toy Details')
   if (loading) {
     return <Spinner />;
   }

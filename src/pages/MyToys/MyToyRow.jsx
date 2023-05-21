@@ -50,10 +50,10 @@ const MyToyRow = ({ toy, handleDelete, handleUpdateData }) => {
       <td className="px-6 py-4">{description}</td>
       <td className="px-6 py-4">
         <div className="flex">
-          <Link to={`/toy-update/${_id}`}>
+          <Link to={`/toy-update/${_id}`} title="Update By Route">
             <HiPencilSquare className="mr-4 text-xl text-blue-600 dark:text-blue-500 hover:underline" />
           </Link>
-          <button onClick={() => handleUpdateData(toy)}>
+          <button title="Modal (incomplete)" onClick={() => handleUpdateData(toy)}>
             <HiPencilSquare className="mr-4 text-xl text-blue-600 dark:text-blue-500 hover:underline" />
           </button>
           <button onClick={() => handleDelete(_id)}>
